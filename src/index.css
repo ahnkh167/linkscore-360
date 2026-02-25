@@ -11,7 +11,120 @@ button { font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: tra
 input { font-family: inherit; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+    background: #0A0F1C; color: #E5E7EB;
+    min-height: 100vh; min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+button { font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+input { font-family: inherit; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+@supports (padding: env(safe-area-inset-bottom)) { body { padding-bottom: env(safe-area-inset-bottom); } }
+.pwa-install-banner {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(135deg, #0F1729, #162033);
+    border-top: 1px solid rgba(56,189,248,0.15);
+    padding: 16px 20px; display: flex; align-items: center;
+    justify-content: space-between; z-index: 1000;
+    animation: slideUp 0.4s ease;
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.3s ease; }
+
+/* Main Layout */
+.main-layout {
+    display: flex; gap: 20px; max-width: 1100px; margin: 0 auto;
+    flex-wrap: nowrap; justify-content: center; align-items: flex-start;
+}
+.wheel-container { flex-shrink: 0; max-width: 500px; }
+.wheel-container svg { max-width: 100%; height: auto; }
+.right-panel { width: 360px; max-width: 100%; min-height: 400px; }
+.meta-fields {
+    display: flex; gap: 8px; max-width: 500px; margin: 12px auto 0;
+    flex-wrap: wrap; justify-content: center;
+}
+.action-buttons {
+    display: flex; gap: 5px; justify-content: center; margin-top: 8px; flex-wrap: wrap;
+}
+.score-buttons { display: flex; gap: 5px; flex-wrap: wrap; }
+.legend-row {
+    display: flex; gap: 14px; justify-content: center; margin-top: 20px;
+    flex-wrap: wrap; font-size: 10px; color: #6B7280;
+}
+
+/* Tablet (810px and below) */
+@media (max-width: 810px) {
+    .main-layout {
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+    }
+    .wheel-container {
+          max-width: 380px;
+          width: 100%;
+    }
+    .right-panel {
+          width: 100%;
+          max-width: 500px;
+          min-height: auto;
+    }
+}
+
+/* Phone (480px and below) */
+@media (max-width: 480px) {
+    .wheel-container {
+          max-width: 320px;
+    }
+    .right-panel {
+          max-width: 100%;
+    }
+    .meta-fields {
+          flex-direction: column;
+          max-width: 100%;
+          gap: 6px;
+    }
+    .meta-fields input {
+          flex: 1 1 100% !important;
+          width: 100% !important;
+    }
+    .action-buttons {
+          gap: 4px;
+    }
+    .action-buttons button {
+          font-size: 10px !important;
+          padding: 5px 8px !important;
+    }
+    .score-buttons button {
+          width: 33px !important;
+          height: 33px !important;
+          font-size: 12px !important;
+    }
+    .legend-row {
+          gap: 8px;
+          font-size: 9px;
+    }
+    h1 {
+          font-size: 26px !important;
+    }
+}
+
+/* Very small phones (360px and below) */
+@media (max-width: 360px) {
+    .wheel-container {
+          max-width: 280px;
+    }
+    .action-buttons {
+          flex-wrap: wrap;
+          justify-content: center;
+    }
+}::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
 @supports (padding: env(safe-area-inset-bottom)) { body { padding-bottom: env(safe-area-inset-bottom); } }
 .pwa-install-banner {
   position: fixed; bottom: 0; left: 0; right: 0;
